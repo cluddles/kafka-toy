@@ -1,6 +1,6 @@
 {
     "type": "record",
-    "name": "Thing",
+    "name": "Fruit",
     "namespace": "avro",
     "fields": [
       {
