@@ -1,0 +1,4 @@
+{
+  "schema": "{\"type\":\"record\",\"name\":\"Fruit\",\"namespace\":\"avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"colour\",\"type\":\"string\"},{\"name\":\"number\",\"type\":\"int\"}]}",
+  "schemaType": "AVRO"
+}

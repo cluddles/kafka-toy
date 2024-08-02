@@ -12,11 +12,8 @@ class SimpleProducer(server: String) {
 
     private val producer: KafkaProducer<String, String> = KafkaProducer(
         mapOf(
-            // Where the kafka server is running
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to server,
-            // Format to use for sending message keys
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java.name,
-            // Format to use for sending the actual message
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java.name,
         )
     )
@@ -44,6 +41,6 @@ fun main() {
         print("> ")
         val line = readlnOrNull()
         if (line.isNullOrEmpty()) break
-        producer.produce("transactions", line)
+        producer.produce("text", line)
     }
 }

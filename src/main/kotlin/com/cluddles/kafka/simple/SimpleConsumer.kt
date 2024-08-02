@@ -5,29 +5,28 @@ import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import java.time.Duration
+import java.util.*
 
-class SimpleConsumer(server: String, consumerGroupId: String, topic: String) {
+class SimpleConsumer(server: String, topic: String, consumerGroupId: String) {
 
-    constructor(host: String, port: Int, consumerGroupId: String, topic: String):
-            this("$host:$port", consumerGroupId, topic)
+    constructor(host: String, port: Int, topic: String, consumerGroupId: String):
+            this("$host:$port", topic, consumerGroupId)
 
     private val consumer = KafkaConsumer<String, String> (
         mapOf(
-            // Where the kafka server is running
             ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to server,
-            // Consumer group
+            ConsumerConfig.CLIENT_ID_CONFIG to "simple-consumer",
             ConsumerConfig.GROUP_ID_CONFIG to consumerGroupId,
-            // How far back we want to consume messages from
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to OFFSET_RESET,
-            // The message key type
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java.name,
-            // The type of the actual message
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java.name,
         )
-    ).apply { this.subscribe(listOf(topic)) }
+    ).apply {
+        this.subscribe(listOf(topic))
+    }
 
     init {
-        logger.info { "SimpleConsumer started, server: $server, consumerGroupId: $consumerGroupId, topic: $topic" }
+        logger.info { "SimpleConsumer started, server: $server, topic: $topic, consumerGroupId: $consumerGroupId" }
     }
 
     fun consumeForever() {
@@ -51,6 +50,7 @@ class SimpleConsumer(server: String, consumerGroupId: String, topic: String) {
 }
 
 fun main() {
-    val consumer = SimpleConsumer("localhost", 9092, "transactions-consumer", "transactions")
+    val topic = "text"
+    val consumer = SimpleConsumer("localhost", 9092, topic, "simple-consumer-${UUID.randomUUID()}")
     consumer.consumeForever()
 }
