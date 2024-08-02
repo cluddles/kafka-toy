@@ -1,0 +1,12 @@
+[versions]
+kotlin-logging = "5.1.0"
+log4j = "2.20.0"
+kafka-clients = "3.5.0"
+
+[libraries]
+kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlin-logging" }
+log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "log4j" }
+log4j-slf4j2 = { group = "org.apache.logging.log4j", name = "log4j-slf4j2-impl", version.ref = "log4j" }
+kafka-clients = { group = "org.apache.kafka", name = "kafka-clients", version.ref = "kafka-clients" }
+
+[plugins]
