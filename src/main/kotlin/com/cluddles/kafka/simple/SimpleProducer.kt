@@ -1,4 +1,4 @@
-package com.cluddles.kafka
+package com.cluddles.kafka.simple
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -39,7 +39,7 @@ class SimpleProducer(server: String) {
 }
 
 fun main() {
-    val producer = SimpleProducer("localhost", 29092)
+    val producer = SimpleProducer("localhost", 9092)
     while (true) {
         print("> ")
         val line = readlnOrNull()

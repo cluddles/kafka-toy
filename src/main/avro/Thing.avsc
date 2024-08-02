@@ -1,0 +1,15 @@
+{
+    "type": "record",
+    "name": "Thing",
+    "namespace": "avro",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "colour",
+        "type": "string"
+      }
+    ]
+}

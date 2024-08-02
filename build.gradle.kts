@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.0.0"
+    alias(libs.plugins.avro)
 }
 
 group = "com.cluddles"
@@ -7,13 +8,17 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://packages.confluent.io/maven/")
+    }
 }
 
 dependencies {
-    api(libs.kotlin.logging)
-    api(libs.log4j.core)
-    api(libs.log4j.slf4j2)
-    api(libs.kafka.clients)
+    implementation(libs.kotlin.logging)
+    implementation(libs.log4j.core)
+    implementation(libs.log4j.slf4j2)
+    implementation(libs.kafka.clients)
+    implementation(libs.kafka.avro.serializer)
 
     testImplementation(kotlin("test"))
 }
