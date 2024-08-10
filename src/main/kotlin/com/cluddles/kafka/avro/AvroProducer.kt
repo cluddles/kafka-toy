@@ -10,7 +10,7 @@ import org.apache.kafka.clients.producer.ProducerRecord
 
 // Can view registered schemas, e.g. http://localhost:8081/schemas/ids/1
 // Can auto register schemas, but also do it manually, e.g. POST to subjects/<subject-name>/versions
-// You can pull the json from the producer logs, or make sort it out yourself
+// You can pull the json from the producer logs, or sort it out yourself
 //   curl --header "Content-Type: application/json" -d @data/fruits-value.json http://localhost:8081/subjects/fruits-value/versions
 class AvroProducer(server: String, registryUrl: String) {
 
@@ -21,7 +21,6 @@ class AvroProducer(server: String, registryUrl: String) {
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to server,
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to KafkaAvroSerializer::class.java.name,
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to KafkaAvroSerializer::class.java.name,
-            AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG to registryUrl,
             AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG to registryUrl,
             AbstractKafkaSchemaSerDeConfig.AUTO_REGISTER_SCHEMAS to "false",
             AbstractKafkaSchemaSerDeConfig.USE_LATEST_VERSION to "true",
