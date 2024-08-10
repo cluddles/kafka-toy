@@ -13,3 +13,4 @@ kafka-avro-serializer = { group = "io.confluent", name = "kafka-avro-serializer"
 
 [plugins]
 avro = { id = "com.github.davidmc24.gradle.plugin.avro", version = "1.9.1" }
+schema-registry = { id = "com.github.imflog.kafka-schema-registry-gradle-plugin", version = "2.1.1" }
